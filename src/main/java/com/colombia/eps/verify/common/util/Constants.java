@@ -24,6 +24,5 @@ public final class Constants {
     public static final String COLOMBIAN_INDICATIVE = "+57";
     public static final String VALIDATE_SUSESFULL = "Validacion exitosa";
     public static final String VALIDATE_FAILED = "Falló el proceso de validacion: ";
+    public static final String EMPTY = "";
 }
-
-

@@ -25,5 +25,4 @@ public interface IVerifyMapper {
     default CodeValidate toCode(CodeRequest codeRequest, String patientNumber){
         return new CodeValidate(patientNumber, codeRequest.getCode());
     }
-
 }

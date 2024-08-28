@@ -18,8 +18,8 @@ import static com.medicine.library.GenerateSchema.generateSchema;
 public class PatientComAdapter implements IPatientComPersistencePort {
     private final PatientClient patientClient  ;
     /**
-     * @param email
-     * @return
+     * @param email patient's email to search
+     * @return patient's number
      */
     @Override
     public String getPatientNumber(String email) {

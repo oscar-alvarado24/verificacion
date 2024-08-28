@@ -23,9 +23,9 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
     private final PatientClient patientClient;
     private final ITwilioMapper twilioMapper;
-    public String accountSid;
-    public String authToken;
-    public String serviceSid;
+    private final String accountSid;
+    private final String authToken;
+    private final String serviceSid;
 
     public BeanConfiguration(PatientClient patientClient, ITwilioMapper twilioMapper) {
         this.patientClient = patientClient;
@@ -64,4 +64,3 @@ public class BeanConfiguration {
         return new VerifyUsecase(verifyPersistencePort(),twilioMapper);
     }
 }
-

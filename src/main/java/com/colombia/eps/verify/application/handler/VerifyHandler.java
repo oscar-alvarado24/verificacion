@@ -70,7 +70,7 @@ public class VerifyHandler implements IVerifyHandler {
     }
 
     /**
-     *
+     *scheduled method that is executed to clean the map containing the patients' emails and phone numbers
      */
     @Override
     @Scheduled(cron = "0 30 0 ? * *")
