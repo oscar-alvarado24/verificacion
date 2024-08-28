@@ -1,0 +1,5 @@
+query($email:String){
+    getPatient(email: $email){
+        cellPhone
+    }
+}
