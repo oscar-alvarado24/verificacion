@@ -2,7 +2,6 @@ package com.colombia.eps.verify.infrastructure.output.aws.sqs.adapter;
 
 import com.colombia.eps.verify.domain.spi.ISqsPersistencePort;
 import com.colombia.eps.verify.infrastructure.exceptions.NotSendMessageException;
-import com.colombia.eps.verify.infrastructure.output.aws.util.GenerateSession;
 import com.colombia.eps.verify.common.util.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +15,7 @@ import software.amazon.awssdk.services.sqs.model.SqsException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.colombia.eps.library.GenerateSession.generateSession;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -30,7 +30,7 @@ public class SqsAdapter implements ISqsPersistencePort {
     @Override
     public Map<String, String> sendMessage(String telephone, String queueUrl) {
         Map <String, String> response = new HashMap<>();
-        StaticCredentialsProvider credential = GenerateSession.generateSession(sqsRole, Constants.ROLE_SESSION_NAME_SQS);
+        StaticCredentialsProvider credential = generateSession(sqsRole, Constants.ROLE_SESSION_NAME_SQS);
         try(SqsClient sqsClient = SqsClient.builder()
                 .region(Region.US_EAST_1)
                 .credentialsProvider(credential)

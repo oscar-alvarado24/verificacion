@@ -3,13 +3,12 @@ package com.colombia.eps.verify.application.handler;
 import com.colombia.eps.verify.application.dto.CodeRequest;
 import com.colombia.eps.verify.application.dto.EmailRequest;
 import com.colombia.eps.verify.application.dto.RequestResponse;
+import com.colombia.eps.verify.application.exception.DontGenerateCodeException;
 import com.colombia.eps.verify.application.mapper.IVerifyMapper;
 import com.colombia.eps.verify.common.util.Constants;
 import com.colombia.eps.verify.domain.api.IPatientComServicePort;
 import com.colombia.eps.verify.domain.api.ISqsServicePort;
 import com.colombia.eps.verify.domain.api.IVerifyServicePort;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -64,9 +63,12 @@ public class VerifyHandler implements IVerifyHandler {
      */
     @Override
     public RequestResponse<String> validateCode(CodeRequest codeRequest) {
-        String patientNumber = cellPhone.get(codeRequest.getEmail());
-        Map<String, String> response = verifyServicePort.validateCode(verifyMapper.toCode(codeRequest, patientNumber));
-        return verifyMapper.toRequestResponse(response);
+        String patientNumber = cellPhone.getOrDefault(codeRequest.getEmail(), Constants.EMPTY);
+        if (!patientNumber.isBlank()) {
+            Map<String, String> response = verifyServicePort.validateCode(verifyMapper.toCode(codeRequest, patientNumber));
+            return verifyMapper.toRequestResponse(response);
+        }
+        throw new DontGenerateCodeException(Constants.DONT_GENERATE_COME_MESSAGE);
     }
 
     /**

@@ -39,9 +39,15 @@ public class TwilioAdapter implements IVerifyPersistencePort {
             response.put(Constants.MESSAGE, Constants.VALIDATE_SUSESFULL);
             response.put(Constants.BODY, verificationCheck.getStatus());
             return response;
-        } catch (Exception e) {
-            log.error(Constants.ERROR_MESSAGE + "{}", e.getMessage());
-            throw new ValidationFailedException(Constants.VALIDATE_FAILED);
+        } catch (Exception exception) {
+            log.error(Constants.ERROR_MESSAGE + "{}", exception.getMessage());
+            if(exception.getMessage().toLowerCase().contains(Constants.VERIFICATIONCHECK)){
+                response.put(Constants.STATUS, Constants.CODE_400);
+                response.put(Constants.MESSAGE, Constants.WRONG_CODE);
+                response.put(Constants.BODY, Constants.EMPTY);
+                return response;
+            }
+            throw new ValidationFailedException(Constants.ERROR_MESSAGE_SERVICE);
         }
     }
 }

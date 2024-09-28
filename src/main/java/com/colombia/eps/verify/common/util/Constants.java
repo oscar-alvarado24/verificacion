@@ -23,6 +23,11 @@ public final class Constants {
     public static final String ERROR_MESSAGE = "An error occurred ";
     public static final String COLOMBIAN_INDICATIVE = "+57";
     public static final String VALIDATE_SUSESFULL = "Validacion exitosa";
-    public static final String VALIDATE_FAILED = "Falló el proceso de validacion: ";
+    public static final String VALIDATE_FAILED = "Falló el proceso de validacion ";
     public static final String EMPTY = "";
+    public static final String VERIFICATIONCHECK = "verificationcheck was not found";
+    public static final String DONT_GENERATE_COME_MESSAGE = "Primero debe generar el codigo antes de validarlo";
+    public static final String CODE_400 = "400";
+    public static final String WRONG_CODE = "Codigo vencido o incorrecto, genera uno nuevo";
+    public static final String EXCEPTION_NAME = "name";
 }

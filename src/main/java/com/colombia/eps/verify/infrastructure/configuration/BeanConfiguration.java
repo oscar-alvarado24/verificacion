@@ -15,7 +15,6 @@ import com.colombia.eps.verify.infrastructure.output.feing.adapter.PatientComAda
 import com.colombia.eps.verify.infrastructure.output.feing.client.PatientClient;
 import com.colombia.eps.verify.infrastructure.output.twilio.adapter.TwilioAdapter;
 import com.colombia.eps.verify.infrastructure.output.twilio.mapper.ITwilioMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
